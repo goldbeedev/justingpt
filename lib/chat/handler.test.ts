@@ -145,7 +145,7 @@ describe("chat handler: streaming", () => {
       path: "answered",
       classification: { intent: "projects" },
       categories: ["profile", "projects"],
-      promptVersions: { classifier: "v1", answer: "v1" },
+      promptVersions: { classifier: "v2", answer: "v2" },
     });
     expect(last.data).toMatchObject({
       path: "answered",

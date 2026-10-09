@@ -1,6 +1,6 @@
 import type { ResumeData } from "@/lib/data/schemas";
 import type { Models } from "@/lib/models";
-import { runPipeline } from "@/lib/pipeline";
+import { runPipeline, storyTagsOf } from "@/lib/pipeline";
 import { gradeCase } from "./graders";
 import type { CaseResult, CaseRun, EvalCase } from "./types";
 
@@ -29,7 +29,7 @@ async function collect(evalCase: EvalCase, options: RunOptions): Promise<CaseRun
     else finish = event;
   }
   if (!meta || !finish) throw new Error("pipeline ended without meta/finish events");
-  return { text, meta, finish };
+  return { text, meta, finish, availableStoryTags: storyTagsOf(options.data) };
 }
 
 async function runOne(evalCase: EvalCase, attempt: number, options: RunOptions): Promise<CaseResult> {

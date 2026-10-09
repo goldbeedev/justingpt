@@ -7,6 +7,8 @@ export interface ClassifierInput {
   message: string;
   history: ChatTurn[];
   nonce: string;
+  /** Tags present in stories.json. Added for v2; v1 ignores it. */
+  availableStoryTags?: readonly string[];
 }
 
 // Typed as complete records so adding an intent or category without describing it fails typecheck.

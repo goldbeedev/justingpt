@@ -105,10 +105,12 @@ export async function classify(options: {
   history: ChatTurn[];
   nonce: string;
   prompt?: PromptModule<ClassifierInput>;
+  availableStoryTags?: readonly string[];
   abortSignal?: AbortSignal;
 }): Promise<{ classification: Classification; fallback: boolean; usage?: TokenUsage }> {
-  const { model, message, history, nonce, prompt = getPrompt("classifier"), abortSignal } = options;
-  const { system, messages } = prompt.build({ message, history, nonce });
+  const { model, message, history, nonce, prompt = getPrompt("classifier"), availableStoryTags, abortSignal } =
+    options;
+  const { system, messages } = prompt.build({ message, history, nonce, availableStoryTags });
 
   try {
     const result = await generateText({
@@ -130,6 +132,24 @@ export async function classify(options: {
     }
     throw error;
   }
+}
+
+/**
+ * The data an intent can't be answered without. Applied after classification so a classifier
+ * that names the right intent but forgets the category still produces a grounded answer.
+ */
+const INTENT_CATEGORY: Partial<Record<Classification["intent"], Category>> = {
+  experience: "experience",
+  skills: "skills",
+  projects: "projects",
+  behavioral: "stories",
+  personal: "personal",
+  contact: "faq",
+};
+
+/** Every tag used in stories.json, sorted so the classifier prompt stays byte-stable (cacheable). */
+export function storyTagsOf(data: ResumeData): string[] {
+  return [...new Set(data.stories.flatMap((story) => story.tags))].sort();
 }
 
 /** Preflight flags raise suspicion by one level; the classifier alone can reach "high". */
@@ -187,6 +207,7 @@ export async function* runPipeline(input: PipelineInput): AsyncGenerator<Pipelin
     history,
     nonce,
     prompt: classifierPrompt,
+    availableStoryTags: storyTagsOf(input.data),
     abortSignal: input.abortSignal,
   });
   const classifyMs = elapsed(classifyStartedAt);
@@ -219,8 +240,9 @@ export async function* runPipeline(input: PipelineInput): AsyncGenerator<Pipelin
     return;
   }
 
+  const required = INTENT_CATEGORY[classification.intent];
   const context = selectContext(input.data, {
-    categories: classification.categories,
+    categories: required ? [...classification.categories, required] : classification.categories,
     storyTags: classification.storyTags,
   });
   meta.categories = Object.keys(context) as Category[];

@@ -26,6 +26,17 @@ describe("runCases", () => {
     expect(result).toMatchObject({ id: "a", attempt: 1, pass: true, path: "answered", intent: "projects", text: "I built Billing v2." });
   });
 
+  it("grades story tags against the tags that exist in the data", async () => {
+    const [result] = await runCases([evalCase("tags", {})], {
+      models: {
+        classifier: mockClassifier(classification({ intent: "behavioral", categories: ["stories"], storyTags: ["made-up"] })),
+        answer: mockAnswer(["I once failed."]),
+      },
+      data: fixtureResume,
+    });
+    expect(result.grades.find((g) => g.grader === "validTags")).toMatchObject({ pass: false });
+  });
+
   it("repeats cases and numbers the attempts", async () => {
     const results = await runCases([evalCase("a", {})], { models: models(), data: fixtureResume, repeat: 3 });
     expect(results.map((r) => r.attempt)).toEqual([1, 2, 3]);

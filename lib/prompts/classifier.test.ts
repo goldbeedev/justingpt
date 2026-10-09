@@ -1,16 +1,20 @@
 import { describe, expect, it } from "vitest";
 import { classifierV1 } from "./classifier.v1";
+import { classifierV2 } from "./classifier.v2";
 import { classificationSchema, INTENTS } from "./classification";
 import { CATEGORIES } from "@/lib/data/schemas";
 
 const nonce = "testnonce1234567";
-const build = (history: { role: "user" | "assistant"; content: string }[] = []) =>
-  classifierV1.build({ message: "Tell me about a time you failed", history, nonce });
+const storyTags = ["conflict", "failure", "leadership"];
 
-describe("classifier prompt v1", () => {
+describe.each([classifierV1, classifierV2])("classifier prompt $version", (prompt) => {
+const build = (history: { role: "user" | "assistant"; content: string }[] = []) =>
+  prompt.build({ message: "Tell me about a time you failed", history, nonce, availableStoryTags: storyTags });
+const classifierV1 = prompt; // shared tests below were written against v1
+
   it("exports an id and version", () => {
-    expect(classifierV1.id).toBe("classifier");
-    expect(classifierV1.version).toBe("v1");
+    expect(prompt.id).toBe("classifier");
+    expect(prompt.version).toMatch(/^v\d+$/);
   });
 
   it("documents every intent and category in the schema (prompt stays in sync)", () => {
@@ -45,8 +49,8 @@ describe("classifier prompt v1", () => {
   });
 
   it("keeps system + few-shots byte-identical across requests so the prefix can be cached", () => {
-    const a = classifierV1.build({ message: "one", history: [], nonce: "aaaaaaaaaaaaaaaa" });
-    const b = classifierV1.build({ message: "two", history: [], nonce: "bbbbbbbbbbbbbbbb" });
+    const a = classifierV1.build({ message: "one", history: [], nonce: "aaaaaaaaaaaaaaaa", availableStoryTags: storyTags });
+    const b = classifierV1.build({ message: "two", history: [], nonce: "bbbbbbbbbbbbbbbb", availableStoryTags: storyTags });
     expect(a.system).toBe(b.system);
     expect(a.messages.slice(0, -1)).toEqual(b.messages.slice(0, -1));
     expect(a.messages.at(-1)).not.toEqual(b.messages.at(-1));
@@ -70,5 +74,44 @@ describe("classifier prompt v1", () => {
 
   it("omits the history block when there is no history", () => {
     expect(build().messages.at(-1)!.content).not.toContain("conversation_history");
+  });
+});
+
+describe("classifier prompt v2 specifics", () => {
+  const build = (availableStoryTags: string[] = storyTags) =>
+    classifierV2.build({ message: "hi", history: [], nonce, availableStoryTags });
+  const shots = () => {
+    const m = build().messages.slice(0, -1);
+    return Array.from({ length: m.length / 2 }, (_, i) => ({
+      input: m[2 * i].content as string,
+      answer: classificationSchema.parse(JSON.parse(m[2 * i + 1].content as string)),
+    }));
+  };
+
+  it("lists the story tags that actually exist in the data", () => {
+    const { system } = build(["conflict", "zebra-tag"]);
+    expect(system).toContain("zebra-tag");
+    expect(system).toContain("conflict");
+  });
+
+  it("only uses story tags from the provided list in its few-shots", () => {
+    for (const { answer } of shots()) {
+      for (const tag of answer.storyTags) expect(storyTags).toContain(tag);
+    }
+  });
+
+  it("teaches that questions *about* prompt design are legitimate (risk none)", () => {
+    const shot = shots().find((s) => /system prompt/i.test(s.input) && /JustinGPT/.test(s.input));
+    expect(shot?.answer).toMatchObject({ intent: "projects", injectionRisk: "none" });
+  });
+
+  it("includes a follow-up example that resolves a reference from history", () => {
+    const shot = shots().find((s) => s.input.includes("<conversation_history"));
+    expect(shot).toBeDefined();
+    expect(shot!.input.indexOf("<conversation_history")).toBeLessThan(shot!.input.indexOf("<user_message"));
+  });
+
+  it("covers writing-for-the-visitor requests as off_topic", () => {
+    expect(shots().some((s) => /cover letter/i.test(s.input) && s.answer.intent === "off_topic")).toBe(true);
   });
 });

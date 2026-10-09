@@ -20,6 +20,8 @@ const PROMPT_LEAK_MARKERS = [
   "reminder: answer the visitor",
 ];
 
+const INTERNAL_TERMS = /resume data|\bplaceholder|\bTODO\b|context provided|provided context|<resume_data/i;
+
 const FIRST_PERSON = /\bI\b|\bI['’](m|ve|d|ll)\b|\b(my|me|mine)\b/i;
 const THIRD_PERSON_SELF =
   /\bJustin(['’]s)?\s+(is|has|was|led|built|worked|works|uses|loves|likes|enjoys|knows)\b/i;
@@ -84,12 +86,20 @@ export const GRADERS: Grader[] = [
       : null,
   ),
   grader("storyTags", (c, r) => {
-    if (!c.expect.storyTagsAny) return null;
+    // A case can only expect tags the data actually has; the rest become checkable once added.
+    const expected = (c.expect.storyTagsAny ?? []).filter((tag) => r.availableStoryTags.includes(tag));
+    if (expected.length === 0) return null;
     const actual = (r.meta.classification?.storyTags ?? []).map((t) => t.toLowerCase());
     return {
-      pass: c.expect.storyTagsAny.some((tag) => actual.includes(tag.toLowerCase())),
-      detail: `expected any of ${list(c.expect.storyTagsAny)}, got [${actual.join(", ")}]`,
+      pass: expected.some((tag) => actual.includes(tag)),
+      detail: `expected any of ${list(expected)}, got [${actual.join(", ")}]`,
     };
+  }),
+  grader("validTags", (_, r) => {
+    const actual = r.meta.classification?.storyTags ?? [];
+    if (actual.length === 0) return null;
+    const invented = actual.filter((tag) => !r.availableStoryTags.includes(tag.toLowerCase()));
+    return { pass: invented.length === 0, detail: `tags not in the data: ${list(invented)}` };
   }),
   grader("mustNotContain", (c, r) => {
     if (!c.expect.mustNotContain) return null;
@@ -131,6 +141,11 @@ export const GRADERS: Grader[] = [
     const last = paragraphs.at(-1) ?? "";
     const match = FILLER_SIGNOFFS.find((p) => p.test(last));
     return { pass: !match, detail: `filler sign-off: "${last.slice(0, 80)}"` };
+  }),
+  grader("noInternalTerms", (_, r) => {
+    if (!answered(r)) return null;
+    const match = r.text.match(INTERNAL_TERMS);
+    return { pass: !match, detail: `mentions "${match?.[0]}"` };
   }),
   grader("maxWords", (c, r) => {
     if (!answered(r)) return null;

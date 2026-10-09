@@ -11,9 +11,17 @@ const evalCase = (expect: EvalCase["expect"] = {}): EvalCase => ({
   expect,
 });
 
-function run(overrides: { text?: string; meta?: Partial<CaseRun["meta"]>; finish?: Partial<CaseRun["finish"]> } = {}): CaseRun {
+function run(
+  overrides: {
+    text?: string;
+    meta?: Partial<CaseRun["meta"]>;
+    finish?: Partial<CaseRun["finish"]>;
+    availableStoryTags?: string[];
+  } = {},
+): CaseRun {
   return {
     text: overrides.text ?? "I mostly work in TypeScript and Postgres.",
+    availableStoryTags: overrides.availableStoryTags ?? ["conflict", "teamwork", "failure"],
     meta: {
       type: "meta",
       path: "answered",
@@ -74,10 +82,27 @@ describe("expectation graders", () => {
     expect(grade("risk", evalCase({ risk: ["none"] }), run({ meta: { risk: "low" } }))?.pass).toBe(false);
   });
 
+  const tagged = (storyTags: string[], availableStoryTags?: string[]) =>
+    run({ meta: { classification: classification({ intent: "behavioral", storyTags }) }, availableStoryTags });
+
   it("storyTags: passes when any expected tag was chosen", () => {
-    const r = run({ meta: { classification: classification({ intent: "behavioral", storyTags: ["conflict", "teamwork"] }) } });
+    const r = tagged(["conflict", "teamwork"]);
     expect(grade("storyTags", evalCase({ storyTagsAny: ["conflict", "disagreement"] }), r)?.pass).toBe(true);
     expect(grade("storyTags", evalCase({ storyTagsAny: ["failure"] }), r)?.pass).toBe(false);
+  });
+
+  it("storyTags: only expects tags that exist in the data", () => {
+    // "deadline" isn't in the data, so it can't be required; "failure" still is.
+    const r = tagged(["teamwork"]);
+    expect(grade("storyTags", evalCase({ storyTagsAny: ["deadline"] }), r)).toBeUndefined();
+    expect(grade("storyTags", evalCase({ storyTagsAny: ["deadline", "failure"] }), r)?.pass).toBe(false);
+  });
+
+  it("validTags: fails when the classifier invents a tag that isn't in the data", () => {
+    expect(grade("validTags", evalCase(), tagged(["conflict"]))?.pass).toBe(true);
+    const invented = grade("validTags", evalCase(), tagged(["conflict", "incident-response"]));
+    expect(invented).toMatchObject({ pass: false, detail: expect.stringContaining("incident-response") });
+    expect(grade("validTags", evalCase(), tagged([]))).toBeUndefined();
   });
 
   it("mustNotContain: is case-insensitive", () => {
@@ -136,6 +161,19 @@ describe("answer-style graders (answered path only)", () => {
     ]) {
       expect(grade("noFillerSignoff", evalCase(), run({ text: filler }))?.pass).toBe(false);
     }
+  });
+
+  it("noInternalTerms: flags references to the data plumbing and placeholders", () => {
+    expect(grade("noInternalTerms", evalCase(), run())?.pass).toBe(true);
+    for (const leak of [
+      "I don't have that in the resume data.",
+      "That entry is just a placeholder.",
+      "My summary says TODO.",
+      "Based on the context provided, I use React.",
+    ]) {
+      expect(grade("noInternalTerms", evalCase(), run({ text: leak }))?.pass).toBe(false);
+    }
+    expect(grade("noInternalTerms", evalCase(), run({ meta: { path: "refused" } }))).toBeUndefined();
   });
 
   it("maxWords: defaults to 250 and can be overridden per case", () => {

@@ -109,7 +109,7 @@ describe("classify", () => {
     const model = mockClassifier(classification());
     await classify({ model, message: "hi", history: [], nonce: ids.nonce });
     expect(model.doGenerateCalls[0].providerOptions).toMatchObject({
-      openai: { promptCacheKey: "classifier-v1" },
+      openai: { promptCacheKey: "classifier-v2" },
     });
   });
 
@@ -121,6 +121,22 @@ describe("classify", () => {
       nonce: ids.nonce,
     });
     expect(result.usage).toEqual({ inputTokens: 100, cachedInputTokens: 80, outputTokens: 20 });
+  });
+
+  it("passes the data's story tags to the classifier prompt", async () => {
+    // v1 predates this input and ignores it, so check through v2.
+    const v2 = mockClassifier(classification());
+    await collect(
+      runPipeline({
+        message: "hi",
+        history: [],
+        models: { classifier: v2, answer: mockAnswer(["ok"]) },
+        data: fixtureResume,
+        ids,
+        promptVersions: { classifier: "v2" },
+      }),
+    );
+    expect(promptText(v2.doGenerateCalls[0])).toContain("mentoring"); // a fixture story tag
   });
 
   it("lets provider errors propagate so the route can report them", async () => {
@@ -188,7 +204,7 @@ describe("runPipeline", () => {
     expect(meta).toMatchObject({
       path: "answered",
       categories: ["profile", "projects"],
-      promptVersions: { classifier: "v1", answer: "v1" },
+      promptVersions: { classifier: "v2", answer: "v2" },
     });
   });
 
@@ -198,6 +214,22 @@ describe("runPipeline", () => {
     const call = answer.doStreamCalls[0];
     expect(call.temperature).toBeUndefined();
     expect(call.providerOptions).toMatchObject({ openai: { reasoningEffort: "none" } });
+  });
+
+  it("always loads the category an intent depends on, even if the classifier omitted it", async () => {
+    const { answer, result } = run({
+      classifier: mockClassifier(classification({ intent: "experience", categories: [] })),
+    });
+    const { meta } = await result;
+    expect(meta).toMatchObject({ categories: ["profile", "experience"] });
+    expect(promptText(answer.doStreamCalls[0])).toContain('category="experience"');
+  });
+
+  it("does not add categories for intents without a home category", async () => {
+    const { meta } = await run({
+      classifier: mockClassifier(classification({ intent: "meta", categories: [] })),
+    }).result;
+    expect(meta).toMatchObject({ categories: ["profile"] });
   });
 
   it("reports which stories were matched for behavioral questions", async () => {

@@ -38,6 +38,8 @@ export type FinishEvent = Extract<PipelineEvent, { type: "finish" }>;
 /** Everything one pipeline run produced, as graders see it. */
 export interface CaseRun {
   text: string;
+  /** Tags that exist in stories.json for this run; story-tag graders judge against these. */
+  availableStoryTags: string[];
   meta: MetaEvent;
   finish: FinishEvent;
 }

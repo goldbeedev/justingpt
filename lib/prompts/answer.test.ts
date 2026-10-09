@@ -1,12 +1,17 @@
 import { describe, expect, it } from "vitest";
 import { answerV1 } from "./answer.v1";
+import { answerV2 } from "./answer.v2";
 import { selectContext } from "@/lib/data/select";
 import { fixtureResume } from "@/lib/data/__fixtures__/resume";
 
 const nonce = "testnonce1234567";
 const canary = "CANARY-abc";
-const build = (overrides: Partial<Parameters<typeof answerV1.build>[0]> = {}) =>
-  answerV1.build({
+type Input = Parameters<typeof answerV1.build>[0];
+
+// Every version must keep these structural guarantees; wording is judged by evals.
+describe.each([answerV1, answerV2])("answer prompt $version", (prompt) => {
+const build = (overrides: Partial<Input> = {}) =>
+  prompt.build({
     context: selectContext(fixtureResume, { categories: ["projects"] }),
     voice: fixtureResume.personal.voice,
     intent: "projects",
@@ -17,10 +22,9 @@ const build = (overrides: Partial<Parameters<typeof answerV1.build>[0]> = {}) =>
     ...overrides,
   });
 
-describe("answer prompt v1", () => {
   it("exports an id and version", () => {
-    expect(answerV1.id).toBe("answer");
-    expect(answerV1.version).toBe("v1");
+    expect(prompt.id).toBe("answer");
+    expect(prompt.version).toMatch(/^v\d+$/);
   });
 
   it("orders system sections ROLE → RULES → STYLE → OUTPUT FORMAT → CONTEXT", () => {
