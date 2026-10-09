@@ -27,6 +27,12 @@ export const MAX_HISTORY_TURNS = 6;
 export const MAX_TURN_LENGTH = 2000;
 const MAX_ANSWER_TOKENS = 800;
 
+// Reasoning models ignore temperature and can spend time "thinking" before the first token.
+// Routing and grounded answers don't need it: benchmarked on gpt-5.4-nano/mini, "none" was
+// fastest with identical routing ("low" was slower than the default). Older reasoning models
+// (gpt-5, o-series) reject "none"; use "minimal" there. Other providers ignore this option.
+const NO_REASONING = { openai: { reasoningEffort: "none" } } as const;
+
 export const REPLIES = {
   refusal:
     "Nice try! I stick to my own rules here. Ask me about my experience, projects, or what I'm up to outside of work.",
@@ -107,7 +113,7 @@ export async function classify(options: {
       system,
       messages,
       output: Output.object({ schema: classificationSchema }),
-      temperature: 0,
+      providerOptions: NO_REASONING,
       abortSignal,
     });
     return { classification: result.output, fallback: false, usage: toUsage(result.usage) };
@@ -231,6 +237,7 @@ export async function* runPipeline(input: PipelineInput): AsyncGenerator<Pipelin
     system,
     messages,
     maxOutputTokens: MAX_ANSWER_TOKENS,
+    providerOptions: NO_REASONING,
     abortSignal: input.abortSignal,
     onError: () => {}, // Errors are rethrown from the stream below; the route logs them once.
   });

@@ -97,6 +97,14 @@ describe("classify", () => {
     expect(text).toContain(`<user_message id="${ids.nonce}">\nWhat's your stack?\n`);
   });
 
+  it("disables reasoning and sends no temperature (unsupported by reasoning models)", async () => {
+    const model = mockClassifier(classification());
+    await classify({ model, message: "hi", history: [], nonce: ids.nonce });
+    const call = model.doGenerateCalls[0];
+    expect(call.temperature).toBeUndefined();
+    expect(call.providerOptions).toMatchObject({ openai: { reasoningEffort: "none" } });
+  });
+
   it("lets provider errors propagate so the route can report them", async () => {
     await expect(
       classify({ model: failingModel(), message: "hi", history: [], nonce: ids.nonce }),
@@ -164,6 +172,14 @@ describe("runPipeline", () => {
       categories: ["profile", "projects"],
       promptVersions: { classifier: "v1", answer: "v1" },
     });
+  });
+
+  it("disables reasoning on the answer model to keep time-to-first-token down", async () => {
+    const { answer, result } = run({});
+    await result;
+    const call = answer.doStreamCalls[0];
+    expect(call.temperature).toBeUndefined();
+    expect(call.providerOptions).toMatchObject({ openai: { reasoningEffort: "none" } });
   });
 
   it("reports which stories were matched for behavioral questions", async () => {
