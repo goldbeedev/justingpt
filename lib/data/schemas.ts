@@ -30,6 +30,7 @@ export const profileSchema = z.object({
   links: z.array(link),
   email: z.email().optional(),
   availability: text.optional(),
+  education: z.array(z.object({ school: text, credential: text })).optional(),
 });
 
 export const experienceSchema = z.array(

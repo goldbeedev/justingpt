@@ -1,26 +1,36 @@
 [
   {
-    "id": "justingpt",
-    "name": "JustinGPT",
-    "summary": "A ChatGPT-style living resume that answers questions about my career.",
-    "problem": "Static resumes can't answer follow-up questions or show how I actually think.",
-    "role": "Solo designer and engineer",
-    "stack": ["Next.js", "TypeScript", "Vercel AI SDK", "Zod", "Vitest"],
-    "architecture": [
-      "Two-step pipeline: a structured JSON classifier routes each question, then a grounded answer prompt streams the response",
-      "Layered prompt-injection defenses: preflight heuristics, nonce-tagged delimiters, a canary token and least-context selection",
-      "Eval-driven prompt iteration with deterministic graders and an LLM-as-judge"
+    "id": "cinemood",
+    "name": "CineMood",
+    "summary": "An AI-powered movie recommendation platform that recommends trending films based on your mood and preference signals.",
+    "problem": "TODO: What problem made you build it?",
+    "role": "Solo: product design, architecture, development, deployment, and ongoing iteration",
+    "stack": [
+      "TypeScript"
     ],
-    "outcome": "TODO: e.g. eval pass rates, link to the README",
-    "link": "https://github.com/TODO/justingpt"
+    "outcome": "Built and launched; live at cinemood.app. TODO: users, learnings, or other outcomes",
+    "link": "https://cinemood.app"
   },
   {
-    "id": "todo-project",
-    "name": "TODO: Project name",
-    "summary": "TODO",
-    "problem": "TODO",
-    "role": "TODO",
-    "stack": ["TODO"],
-    "outcome": "TODO"
+    "id": "justingpt",
+    "name": "JustinGPT",
+    "summary": "This chatbot: a ChatGPT-style living resume that answers questions about my career.",
+    "problem": "A static resume can't answer follow-up questions or show how I actually think.",
+    "role": "Solo designer and engineer",
+    "stack": [
+      "Next.js",
+      "TypeScript",
+      "Vercel AI SDK",
+      "Zod",
+      "Vitest",
+      "Upstash"
+    ],
+    "architecture": [
+      "Two-step pipeline: a structured-JSON classifier routes each question, then a grounded answer prompt streams the reply",
+      "Layered prompt-injection defenses: preflight heuristics, nonce-tagged delimiters, a streaming canary scanner, and least-context data selection",
+      "Versioned prompts tuned with an eval suite of deterministic graders; v2 took the suite from 52% to 98%",
+      "Test-driven core: every guard, prompt contract, and the API route are covered by unit tests with mocked models"
+    ],
+    "outcome": "Live as my interactive resume; eval history and design notes are in the repo."
   }
 ]

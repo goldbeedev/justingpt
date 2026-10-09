@@ -1,25 +1,132 @@
 [
   {
-    "company": "TODO: Most recent company",
+    "company": "Rev",
     "role": "Senior Software Engineer",
-    "start": "2022-01",
-    "end": "present",
-    "location": "TODO: Remote",
-    "summary": "TODO: One sentence on the team/product and your scope.",
-    "stack": ["TypeScript", "React", "Node.js", "PostgreSQL"],
-    "highlights": [
-      "TODO: Led X, which did Y",
-      "TODO: Designed/rebuilt Z"
+    "start": "2025-07",
+    "end": "2026-06",
+    "summary": "Senior engineer on the Growth Team for Rev's AI-powered transcription and content intelligence products.",
+    "stack": [
+      "TypeScript",
+      "React",
+      "GraphQL",
+      "REST APIs",
+      ".NET",
+      "GitHub Actions",
+      "Claude"
     ],
-    "metrics": ["TODO: e.g. Cut p95 latency 40%"]
+    "highlights": [
+      "Delivered onboarding, activation, and conversion-focused initiatives on the Growth Team to improve the first-time user experience and increase subscription adoption",
+      "Designed and implemented AI chat experiences using HTTP streaming, with real-time token streaming and progressively rendered responses",
+      "Designed and delivered transcript translation, supporting multilingual and mixed-language media translated into English",
+      "Integrated internal AI microservices for transcription processing, language intelligence, and content analysis",
+      "Implemented AI-assisted engineering workflows, including Claude-powered GitHub Actions and custom developer tooling",
+      "Led large-scale initiatives by translating complex business requirements into technical solutions and driving them from conception to production launch",
+      "Partnered with product managers, designers, QA, and stakeholders to define requirements and ship customer-facing features",
+      "Evaluated AI integration patterns and helped develop new AI-powered customer experiences",
+      "Contributed to engineering best practices, technical planning, and cross-team knowledge sharing"
+    ]
   },
   {
-    "company": "TODO: Previous company",
+    "company": "Monolith Forensics",
+    "role": "Senior Software Engineer",
+    "start": "2024-05",
+    "end": "2025-07",
+    "summary": "Built and enhanced full-stack case management applications.",
+    "stack": [
+      "React",
+      "TypeScript",
+      "JavaScript"
+    ],
+    "highlights": [
+      "Spearheaded the JavaScript-to-TypeScript migration",
+      "Built and enhanced full-stack case management applications with React and TypeScript",
+      "Delivered production-ready features end to end",
+      "Influenced architecture and technical direction",
+      "Mentored engineers and championed engineering best practices"
+    ]
+  },
+  {
+    "company": "Cart.com",
     "role": "Software Engineer",
-    "start": "2018-06",
-    "end": "2021-12",
-    "summary": "TODO",
-    "stack": ["JavaScript", "React"],
-    "highlights": ["TODO"]
+    "start": "2021-09",
+    "end": "2024-05",
+    "summary": "Built full-stack fulfillment and e-commerce applications, GraphQL APIs, and cloud-native services.",
+    "stack": [
+      "React",
+      "GraphQL",
+      "NestJS",
+      "PostgreSQL",
+      "Prisma",
+      ".NET",
+      "Entity Framework",
+      "GCP",
+      "GKE (Kubernetes)",
+      "GitHub Actions",
+      "Auth0"
+    ],
+    "highlights": [
+      "Designed and implemented GraphQL APIs and backend services powering customer-facing fulfillment workflows and operational tooling",
+      "Developed scalable PostgreSQL-backed services and data models supporting high-volume fulfillment operations across multiple business domains",
+      "Built and maintained cloud-native services on GKE Kubernetes using GCP services, GitHub Actions, and CI/CD automation",
+      "Served as launch captain for new services, coordinating production readiness across engineering, product, QA, and operations",
+      "Developed internal tooling that improved visibility and workflow efficiency for fulfillment teams",
+      "Implemented Auth0 MFA integrations to strengthen account security",
+      "Contributed to infrastructure setup and deployment strategies for NestJS services",
+      "Took part in architecture discussions on service boundaries, API design, deployment strategy, and long-term maintainability",
+      "Conducted code reviews, mentored teammates during onboarding, and wrote technical documentation"
+    ]
+  },
+  {
+    "company": "Database Works",
+    "role": "Front-End Software Engineer",
+    "start": "2019-10",
+    "end": "2021-09",
+    "summary": "Developed ERP and business intelligence applications.",
+    "stack": [
+      ".NET Core",
+      "TypeScript",
+      "C#",
+      "SQL"
+    ],
+    "highlights": [
+      "Developed ERP and business intelligence applications with .NET Core, TypeScript, C#, and SQL-backed architectures",
+      "Built third-party integrations and enhanced middle-tier APIs",
+      "Worked directly with stakeholders to translate business requirements into technical solutions"
+    ]
+  },
+  {
+    "company": "Glidewell Dental",
+    "role": "Web Developer",
+    "start": "2018-07",
+    "end": "2019-10",
+    "summary": "Developed web applications and supported AWS integrations and CI/CD.",
+    "stack": [
+      "React",
+      "Angular",
+      "Node.js",
+      "AWS",
+      "CI/CD"
+    ],
+    "highlights": [
+      "Developed React, Angular, and Node.js applications while supporting AWS integrations and CI/CD processes"
+    ]
+  },
+  {
+    "company": "Zomoz",
+    "role": "Web Developer Intern",
+    "start": "2018-02",
+    "end": "2018-07",
+    "summary": "Web development internship.",
+    "stack": [
+      "WordPress",
+      "PHP",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "jQuery"
+    ],
+    "highlights": [
+      "Developed WordPress, PHP, JavaScript, HTML, CSS, and jQuery solutions"
+    ]
   }
 ]

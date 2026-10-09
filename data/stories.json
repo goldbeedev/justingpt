@@ -1,8 +1,83 @@
 [
   {
+    "id": "launch-captain-cart",
+    "title": "Launch captain for new services at Cart.com",
+    "tags": [
+      "leadership",
+      "collaboration",
+      "ownership"
+    ],
+    "questionPatterns": [
+      "Tell me about a time you led a project",
+      "Describe a time you coordinated across teams",
+      "Tell me about a launch you owned"
+    ],
+    "situation": "TODO",
+    "task": "TODO",
+    "action": "TODO",
+    "result": "TODO"
+  },
+  {
+    "id": "typescript-migration-monolith",
+    "title": "Spearheading the JavaScript-to-TypeScript migration at Monolith Forensics",
+    "tags": [
+      "influence",
+      "leadership",
+      "technical-debt"
+    ],
+    "questionPatterns": [
+      "Tell me about a time you drove a technical change",
+      "How have you influenced technical direction?",
+      "Tell me about a large refactor or migration"
+    ],
+    "situation": "TODO",
+    "task": "TODO",
+    "action": "TODO",
+    "result": "TODO",
+    "lesson": "TODO"
+  },
+  {
+    "id": "mentoring",
+    "title": "Mentoring engineers at Monolith Forensics and Cart.com",
+    "tags": [
+      "mentoring",
+      "coaching",
+      "communication"
+    ],
+    "questionPatterns": [
+      "Tell me about a time you mentored someone",
+      "How do you help teammates grow?"
+    ],
+    "situation": "TODO",
+    "task": "TODO",
+    "action": "TODO",
+    "result": "TODO"
+  },
+  {
+    "id": "complex-requirements-rev",
+    "title": "Turning complex business requirements into a shipped initiative at Rev",
+    "tags": [
+      "ambiguity",
+      "communication",
+      "ownership"
+    ],
+    "questionPatterns": [
+      "Describe a time requirements were unclear",
+      "How do you turn vague requirements into a plan?"
+    ],
+    "situation": "TODO",
+    "task": "TODO",
+    "action": "TODO",
+    "result": "TODO"
+  },
+  {
     "id": "todo-conflict",
     "title": "TODO: Disagreement with a teammate over technical direction",
-    "tags": ["conflict", "communication", "collaboration"],
+    "tags": [
+      "conflict",
+      "communication",
+      "collaboration"
+    ],
     "questionPatterns": [
       "Tell me about a time you disagreed with a coworker",
       "How do you handle conflict on a team?"
@@ -14,24 +89,39 @@
     "lesson": "TODO"
   },
   {
-    "id": "todo-leadership",
-    "title": "TODO: Leading a project without formal authority",
-    "tags": ["leadership", "ownership", "influence"],
-    "questionPatterns": ["Tell me about a time you led a project", "Describe a time you took ownership"],
-    "situation": "TODO",
-    "task": "TODO",
-    "action": "TODO",
-    "result": "TODO"
-  },
-  {
     "id": "todo-failure",
     "title": "TODO: A production incident or a mistake you learned from",
-    "tags": ["failure", "mistake", "incident", "learning"],
-    "questionPatterns": ["Tell me about a time you failed", "What's a mistake you learned from?"],
+    "tags": [
+      "failure",
+      "mistake",
+      "incident",
+      "learning"
+    ],
+    "questionPatterns": [
+      "Tell me about a time you failed",
+      "What's a mistake you learned from?"
+    ],
     "situation": "TODO",
     "task": "TODO",
     "action": "TODO",
     "result": "TODO",
     "lesson": "TODO"
+  },
+  {
+    "id": "todo-deadline",
+    "title": "TODO: Delivering under a tight deadline",
+    "tags": [
+      "deadline",
+      "prioritization",
+      "pressure"
+    ],
+    "questionPatterns": [
+      "How do you handle tight deadlines?",
+      "Tell me about a time you had to deliver under pressure"
+    ],
+    "situation": "TODO",
+    "task": "TODO",
+    "action": "TODO",
+    "result": "TODO"
   }
 ]

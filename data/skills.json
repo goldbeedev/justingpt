@@ -1,32 +1,151 @@
 {
   "groups": [
     {
+      "name": "Languages",
+      "items": [
+        {
+          "name": "TypeScript",
+          "level": "expert",
+          "years": 7
+        },
+        {
+          "name": "JavaScript",
+          "level": "expert",
+          "years": 8
+        },
+        {
+          "name": "C#",
+          "level": "proficient"
+        }
+      ]
+    },
+    {
       "name": "Frontend",
       "items": [
-        { "name": "React", "level": "expert", "years": 7 },
-        { "name": "Next.js", "level": "expert", "years": 5 },
-        { "name": "TypeScript", "level": "expert", "years": 6 }
+        {
+          "name": "React",
+          "level": "expert",
+          "years": 8
+        },
+        {
+          "name": "Angular",
+          "level": "familiar"
+        }
       ]
     },
     {
-      "name": "Backend",
+      "name": "Backend & APIs",
       "items": [
-        { "name": "Node.js", "level": "expert", "years": 8 },
-        { "name": "PostgreSQL", "level": "proficient", "years": 6 }
+        {
+          "name": "Node.js",
+          "level": "expert"
+        },
+        {
+          "name": "GraphQL",
+          "level": "expert",
+          "years": 5
+        },
+        {
+          "name": "NestJS",
+          "level": "proficient",
+          "years": 3
+        },
+        {
+          "name": ".NET",
+          "level": "proficient"
+        },
+        {
+          "name": "Kafka",
+          "level": "familiar"
+        }
       ]
     },
     {
-      "name": "Infra & DevOps",
-      "items": [{ "name": "AWS", "level": "proficient", "years": 5 }]
+      "name": "Data",
+      "items": [
+        {
+          "name": "PostgreSQL",
+          "level": "proficient",
+          "years": 5
+        },
+        {
+          "name": "Prisma",
+          "level": "proficient",
+          "years": 3
+        },
+        {
+          "name": "Entity Framework",
+          "level": "proficient"
+        }
+      ]
+    },
+    {
+      "name": "Cloud & DevOps",
+      "items": [
+        {
+          "name": "GCP",
+          "level": "proficient",
+          "years": 3
+        },
+        {
+          "name": "Kubernetes (GKE)",
+          "level": "proficient",
+          "years": 3
+        },
+        {
+          "name": "AWS",
+          "level": "familiar"
+        },
+        {
+          "name": "GitHub Actions",
+          "level": "proficient"
+        },
+        {
+          "name": "CI/CD",
+          "level": "proficient"
+        }
+      ]
+    },
+    {
+      "name": "Testing",
+      "items": [
+        {
+          "name": "Jest",
+          "level": "proficient"
+        },
+        {
+          "name": "Cypress",
+          "level": "proficient"
+        }
+      ]
     },
     {
       "name": "AI & LLMs",
       "items": [
-        { "name": "Prompt engineering", "level": "proficient", "years": 2 },
-        { "name": "LLM evaluation", "level": "proficient", "years": 1 }
+        {
+          "name": "Streaming AI chat UX",
+          "level": "proficient"
+        },
+        {
+          "name": "LLM integration (AI microservices, Claude)",
+          "level": "proficient"
+        },
+        {
+          "name": "Prompt engineering",
+          "level": "proficient"
+        },
+        {
+          "name": "LLM evaluation",
+          "level": "proficient"
+        },
+        {
+          "name": "AI-assisted dev workflows",
+          "level": "proficient"
+        }
       ]
     }
   ],
-  "favorites": ["TODO: e.g. TypeScript", "TODO: e.g. Postgres"],
-  "preferNot": ["TODO: e.g. tech you'd rather not work in day to day"]
+  "favorites": [
+    "TODO: e.g. TypeScript"
+  ]
 }

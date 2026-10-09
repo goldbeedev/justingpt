@@ -75,6 +75,18 @@ describe("parseResumeData", () => {
     }, "stories.json", "tags");
   });
 
+  it("accepts optional education entries on the profile", () => {
+    const raw = clone(fixtureResume);
+    raw.profile.education = [{ school: "State University", credential: "B.A. Communications" }];
+    expect(parseResumeData(raw).profile.education).toHaveLength(1);
+  });
+
+  it("rejects education entries missing a credential", () => {
+    expectInvalid((raw) => {
+      (raw.profile as Record<string, unknown>).education = [{ school: "State University" }];
+    }, "profile.json", "credential");
+  });
+
   it("rejects non-http(s) links (rendered as Markdown, so no javascript: URLs)", () => {
     expectInvalid((raw) => {
       (raw.profile as { links: { url: string }[] }).links[0].url = "javascript:alert(1)";

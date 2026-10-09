@@ -3,11 +3,31 @@
   "title": "Senior Full-Stack Engineer",
   "yearsExperience": 8,
   "location": "TODO: City, State (or Remote)",
-  "summary": "TODO: 2-3 sentence elevator pitch in first person, e.g. what you build, what you're known for, what you're looking for next.",
+  "summary": "I'm a senior full-stack engineer with 8+ years of experience building SaaS, e-commerce, case management, and AI-powered products. I go deep on TypeScript, Node.js, React, GraphQL, and PostgreSQL, and I've designed cloud-native systems, distributed architectures, and AI-enabled customer experiences.",
   "greeting": "Hi, I'm Justin. Ask me anything!",
   "links": [
-    { "label": "GitHub", "url": "https://github.com/TODO" },
-    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/TODO" }
+    {
+      "label": "GitHub",
+      "url": "https://github.com/goldbeedev"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/justin-goldby-b0885b39/"
+    },
+    {
+      "label": "CineMood",
+      "url": "https://cinemood.app"
+    }
   ],
-  "availability": "TODO: e.g. Open to senior/staff full-stack roles, remote or hybrid"
+  "availability": "TODO: e.g. Open to senior full-stack roles, remote or hybrid",
+  "education": [
+    {
+      "school": "California State University, Fullerton",
+      "credential": "B.A. Communications"
+    },
+    {
+      "school": "Team Treehouse",
+      "credential": "Full-Stack JavaScript Tech Degree"
+    }
+  ]
 }
