@@ -105,6 +105,24 @@ describe("classify", () => {
     expect(call.providerOptions).toMatchObject({ openai: { reasoningEffort: "none" } });
   });
 
+  it("sends a prompt cache key derived from the prompt id and version", async () => {
+    const model = mockClassifier(classification());
+    await classify({ model, message: "hi", history: [], nonce: ids.nonce });
+    expect(model.doGenerateCalls[0].providerOptions).toMatchObject({
+      openai: { promptCacheKey: "classifier-v1" },
+    });
+  });
+
+  it("reports cached input tokens so cache hits are visible", async () => {
+    const result = await classify({
+      model: mockClassifier(classification(), { cachedTokens: 80 }),
+      message: "hi",
+      history: [],
+      nonce: ids.nonce,
+    });
+    expect(result.usage).toEqual({ inputTokens: 100, cachedInputTokens: 80, outputTokens: 20 });
+  });
+
   it("lets provider errors propagate so the route can report them", async () => {
     await expect(
       classify({ model: failingModel(), message: "hi", history: [], nonce: ids.nonce }),

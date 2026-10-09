@@ -2,8 +2,8 @@ import { simulateReadableStream } from "ai";
 import { MockLanguageModelV4 } from "ai/test";
 import type { Classification } from "@/lib/prompts/classification";
 
-const usage = (input: number, output: number) => ({
-  inputTokens: { total: input, noCache: input, cacheRead: undefined, cacheWrite: undefined },
+const usage = (input: number, output: number, cached?: number) => ({
+  inputTokens: { total: input, noCache: input - (cached ?? 0), cacheRead: cached, cacheWrite: undefined },
   outputTokens: { total: output, text: output, reasoning: undefined },
 });
 
@@ -20,13 +20,13 @@ export function classification(overrides: Partial<Classification> = {}): Classif
 }
 
 /** A classifier model that returns `output` verbatim (an object is JSON-encoded). */
-export function mockClassifier(output: Classification | string) {
+export function mockClassifier(output: Classification | string, options: { cachedTokens?: number } = {}) {
   const text = typeof output === "string" ? output : JSON.stringify(output);
   return new MockLanguageModelV4({
     doGenerate: async () => ({
       content: [{ type: "text", text }],
       finishReason: { unified: "stop", raw: undefined },
-      usage: usage(100, 20),
+      usage: usage(100, 20, options.cachedTokens),
       warnings: [],
     }),
   });

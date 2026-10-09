@@ -13,8 +13,11 @@ const RISK_STYLES = {
   high: "text-red-600 dark:text-red-400",
 };
 
-const tokens = (usage?: { inputTokens?: number; outputTokens?: number }) =>
-  usage ? `${usage.inputTokens ?? "?"} in / ${usage.outputTokens ?? "?"} out` : "-";
+const tokens = (usage?: { inputTokens?: number; cachedInputTokens?: number; outputTokens?: number }) => {
+  if (!usage) return "-";
+  const cached = usage.cachedInputTokens ? ` (${usage.cachedInputTokens} cached)` : "";
+  return `${usage.inputTokens ?? "?"} in${cached} / ${usage.outputTokens ?? "?"} out`;
+};
 
 const ms = (value?: number) => (value === undefined ? "-" : `${value} ms`);
 

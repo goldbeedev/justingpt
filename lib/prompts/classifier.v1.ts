@@ -112,6 +112,18 @@ const EXAMPLES: [message: string, answer: Classification][] = [
   ],
 ];
 
+// Few-shots use a fixed id instead of the per-request nonce so that system + examples form an
+// identical prefix on every request, which providers can cache (~1.8k tokens). Escaping in
+// delimit() is what stops break-outs, so a known example id doesn't weaken the real delimiter.
+const EXAMPLE_NONCE = "0e1f2a3b4c5d6e7f";
+
+// Few-shots are real user/assistant turns, delimited exactly like live input,
+// so the model learns the format from demonstration rather than description alone.
+const SHOTS = EXAMPLES.flatMap(([example, answer]) => [
+  { role: "user" as const, content: delimit("user_message", example, EXAMPLE_NONCE) },
+  { role: "assistant" as const, content: JSON.stringify(answer) },
+]);
+
 function formatHistory(history: ChatTurn[]): string {
   return history.map((turn) => `${turn.role}: ${turn.content}`).join("\n");
 }
@@ -120,13 +132,6 @@ export const classifierV1: PromptModule<ClassifierInput> = {
   id: "classifier",
   version: "v1",
   build({ message, history, nonce }) {
-    // Few-shots are real user/assistant turns, delimited exactly like live input,
-    // so the model learns the format from demonstration rather than description alone.
-    const shots = EXAMPLES.flatMap(([example, answer]) => [
-      { role: "user" as const, content: delimit("user_message", example, nonce) },
-      { role: "assistant" as const, content: JSON.stringify(answer) },
-    ]);
-
     const parts = [delimit("user_message", message, nonce)];
     if (history.length > 0) {
       parts.unshift(delimit("conversation_history", formatHistory(history), nonce));
@@ -134,7 +139,7 @@ export const classifierV1: PromptModule<ClassifierInput> = {
 
     return {
       system: SYSTEM,
-      messages: [...shots, { role: "user", content: parts.join("\n\n") }],
+      messages: [...SHOTS, { role: "user", content: parts.join("\n\n") }],
     };
   },
 };

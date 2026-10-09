@@ -55,6 +55,8 @@ export const FALLBACK_CLASSIFICATION: Classification = {
 
 export interface TokenUsage {
   inputTokens: number | undefined;
+  /** Input tokens served from the provider's prompt cache (a subset of inputTokens). */
+  cachedInputTokens: number | undefined;
   outputTokens: number | undefined;
 }
 
@@ -93,6 +95,7 @@ export interface PipelineInput {
 
 const toUsage = (usage: LanguageModelUsage): TokenUsage => ({
   inputTokens: usage.inputTokens,
+  cachedInputTokens: usage.inputTokenDetails?.cacheReadTokens,
   outputTokens: usage.outputTokens,
 });
 
@@ -113,7 +116,10 @@ export async function classify(options: {
       system,
       messages,
       output: Output.object({ schema: classificationSchema }),
-      providerOptions: NO_REASONING,
+      // The cache key groups requests that share this prompt's static prefix.
+      providerOptions: {
+        openai: { ...NO_REASONING.openai, promptCacheKey: `${prompt.id}-${prompt.version}` },
+      },
       abortSignal,
     });
     return { classification: result.output, fallback: false, usage: toUsage(result.usage) };

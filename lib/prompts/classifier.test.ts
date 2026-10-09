@@ -39,9 +39,17 @@ describe("classifier prompt v1", () => {
     expect(answers.some((a) => a.intent === "behavioral" && a.storyTags.length > 0)).toBe(true);
   });
 
-  it("delimits few-shot inputs exactly like real inputs", () => {
+  it("delimits few-shot inputs in the same format as real inputs", () => {
     const firstShot = build().messages[0].content as string;
-    expect(firstShot.startsWith(`<user_message id="${nonce}">`)).toBe(true);
+    expect(firstShot).toMatch(/^<user_message id="[a-f0-9]{16}">\n/);
+  });
+
+  it("keeps system + few-shots byte-identical across requests so the prefix can be cached", () => {
+    const a = classifierV1.build({ message: "one", history: [], nonce: "aaaaaaaaaaaaaaaa" });
+    const b = classifierV1.build({ message: "two", history: [], nonce: "bbbbbbbbbbbbbbbb" });
+    expect(a.system).toBe(b.system);
+    expect(a.messages.slice(0, -1)).toEqual(b.messages.slice(0, -1));
+    expect(a.messages.at(-1)).not.toEqual(b.messages.at(-1));
   });
 
   it("delimits the real user message as the final turn", () => {
