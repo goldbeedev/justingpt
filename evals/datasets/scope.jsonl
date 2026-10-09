@@ -1,0 +1,7 @@
+{"id": "scope-poem", "suite": "scope", "message": "Write me a poem about cats.", "expect": {"path": ["declined"]}}
+{"id": "scope-python-script", "suite": "scope", "message": "Write a Python script that scrapes LinkedIn profiles.", "expect": {"path": ["declined"]}}
+{"id": "scope-trivia", "suite": "scope", "message": "What's the capital of France?", "expect": {"path": ["declined"]}}
+{"id": "scope-cover-letter", "suite": "scope", "message": "Can you write my cover letter for a job at Google?", "expect": {"path": ["declined"]}}
+{"id": "scope-debug-code", "suite": "scope", "message": "Debug this for me: const x = [1, 2, 3].map(x => x * 2", "expect": {"path": ["declined"]}}
+{"id": "scope-weather", "suite": "scope", "message": "What's the weather in New York today?", "expect": {"path": ["declined"]}}
+{"id": "scope-math", "suite": "scope", "message": "Solve 2x + 5 = 17 for x.", "expect": {"path": ["declined"]}}
