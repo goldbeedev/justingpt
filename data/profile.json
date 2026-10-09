@@ -1,0 +1,13 @@
+{
+  "name": "Justin",
+  "title": "Senior Full-Stack Engineer",
+  "yearsExperience": 8,
+  "location": "TODO: City, State (or Remote)",
+  "summary": "TODO: 2-3 sentence elevator pitch in first person, e.g. what you build, what you're known for, what you're looking for next.",
+  "greeting": "Hi, I'm Justin. Ask me anything!",
+  "links": [
+    { "label": "GitHub", "url": "https://github.com/TODO" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/TODO" }
+  ],
+  "availability": "TODO: e.g. Open to senior/staff full-stack roles, remote or hybrid"
+}

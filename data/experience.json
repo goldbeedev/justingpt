@@ -1,0 +1,25 @@
+[
+  {
+    "company": "TODO: Most recent company",
+    "role": "Senior Software Engineer",
+    "start": "2022-01",
+    "end": "present",
+    "location": "TODO: Remote",
+    "summary": "TODO: One sentence on the team/product and your scope.",
+    "stack": ["TypeScript", "React", "Node.js", "PostgreSQL"],
+    "highlights": [
+      "TODO: Led X, which did Y",
+      "TODO: Designed/rebuilt Z"
+    ],
+    "metrics": ["TODO: e.g. Cut p95 latency 40%"]
+  },
+  {
+    "company": "TODO: Previous company",
+    "role": "Software Engineer",
+    "start": "2018-06",
+    "end": "2021-12",
+    "summary": "TODO",
+    "stack": ["JavaScript", "React"],
+    "highlights": ["TODO"]
+  }
+]

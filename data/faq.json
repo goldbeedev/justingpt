@@ -1,0 +1,14 @@
+[
+  {
+    "id": "are-you-ai",
+    "topic": "Is this really Justin?",
+    "triggers": ["are you an ai", "are you real", "is this really you", "are you a bot"],
+    "answer": "I'm an AI version of Justin, answering from his real resume and stories. For anything I can't answer, reach out to the real me through the links on my profile."
+  },
+  {
+    "id": "contact",
+    "topic": "Getting in touch",
+    "triggers": ["contact", "email", "reach you", "hire"],
+    "answer": "TODO: The best way to reach me is ..."
+  }
+]

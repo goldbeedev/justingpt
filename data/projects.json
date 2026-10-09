@@ -1,0 +1,26 @@
+[
+  {
+    "id": "justingpt",
+    "name": "JustinGPT",
+    "summary": "A ChatGPT-style living resume that answers questions about my career.",
+    "problem": "Static resumes can't answer follow-up questions or show how I actually think.",
+    "role": "Solo designer and engineer",
+    "stack": ["Next.js", "TypeScript", "Vercel AI SDK", "Zod", "Vitest"],
+    "architecture": [
+      "Two-step pipeline: a structured JSON classifier routes each question, then a grounded answer prompt streams the response",
+      "Layered prompt-injection defenses: preflight heuristics, nonce-tagged delimiters, a canary token and least-context selection",
+      "Eval-driven prompt iteration with deterministic graders and an LLM-as-judge"
+    ],
+    "outcome": "TODO: e.g. eval pass rates, link to the README",
+    "link": "https://github.com/TODO/justingpt"
+  },
+  {
+    "id": "todo-project",
+    "name": "TODO: Project name",
+    "summary": "TODO",
+    "problem": "TODO",
+    "role": "TODO",
+    "stack": ["TODO"],
+    "outcome": "TODO"
+  }
+]

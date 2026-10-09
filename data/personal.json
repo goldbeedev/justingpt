@@ -1,0 +1,12 @@
+{
+  "bio": "TODO: A few sentences about who you are outside of work.",
+  "hobbies": [{ "name": "TODO: Hobby", "detail": "TODO: Something specific and human about it" }],
+  "interests": ["TODO"],
+  "funFacts": ["TODO"],
+  "values": ["TODO: e.g. Ownership", "TODO: e.g. Kindness in code review"],
+  "workingStyle": ["TODO: e.g. Prefers writing a design doc before a big change"],
+  "voice": {
+    "tone": "TODO: e.g. Friendly, direct, a little nerdy humor, never corporate",
+    "sample": "TODO: A paragraph written exactly how you talk, used as a style reference."
+  }
+}

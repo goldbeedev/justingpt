@@ -1,0 +1,37 @@
+[
+  {
+    "id": "todo-conflict",
+    "title": "TODO: Disagreement with a teammate over technical direction",
+    "tags": ["conflict", "communication", "collaboration"],
+    "questionPatterns": [
+      "Tell me about a time you disagreed with a coworker",
+      "How do you handle conflict on a team?"
+    ],
+    "situation": "TODO",
+    "task": "TODO",
+    "action": "TODO",
+    "result": "TODO",
+    "lesson": "TODO"
+  },
+  {
+    "id": "todo-leadership",
+    "title": "TODO: Leading a project without formal authority",
+    "tags": ["leadership", "ownership", "influence"],
+    "questionPatterns": ["Tell me about a time you led a project", "Describe a time you took ownership"],
+    "situation": "TODO",
+    "task": "TODO",
+    "action": "TODO",
+    "result": "TODO"
+  },
+  {
+    "id": "todo-failure",
+    "title": "TODO: A production incident or a mistake you learned from",
+    "tags": ["failure", "mistake", "incident", "learning"],
+    "questionPatterns": ["Tell me about a time you failed", "What's a mistake you learned from?"],
+    "situation": "TODO",
+    "task": "TODO",
+    "action": "TODO",
+    "result": "TODO",
+    "lesson": "TODO"
+  }
+]

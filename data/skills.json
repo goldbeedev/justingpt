@@ -1,0 +1,32 @@
+{
+  "groups": [
+    {
+      "name": "Frontend",
+      "items": [
+        { "name": "React", "level": "expert", "years": 7 },
+        { "name": "Next.js", "level": "expert", "years": 5 },
+        { "name": "TypeScript", "level": "expert", "years": 6 }
+      ]
+    },
+    {
+      "name": "Backend",
+      "items": [
+        { "name": "Node.js", "level": "expert", "years": 8 },
+        { "name": "PostgreSQL", "level": "proficient", "years": 6 }
+      ]
+    },
+    {
+      "name": "Infra & DevOps",
+      "items": [{ "name": "AWS", "level": "proficient", "years": 5 }]
+    },
+    {
+      "name": "AI & LLMs",
+      "items": [
+        { "name": "Prompt engineering", "level": "proficient", "years": 2 },
+        { "name": "LLM evaluation", "level": "proficient", "years": 1 }
+      ]
+    }
+  ],
+  "favorites": ["TODO: e.g. TypeScript", "TODO: e.g. Postgres"],
+  "preferNot": ["TODO: e.g. tech you'd rather not work in day to day"]
+}
