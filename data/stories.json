@@ -12,10 +12,32 @@
       "Describe a time you coordinated across teams",
       "Tell me about a launch you owned"
     ],
-    "situation": "TODO",
-    "task": "TODO",
-    "action": "TODO",
-    "result": "TODO"
+    "situation": "Our team needed to get a new microservice built and released into production in a timely manner.",
+    "task": "Own the process for managing the moving pieces to build and release a Billing (.NET) microservice into production.",
+    "action": "Refined stories, followed up with stakeholders and team members on action items, rallied team members around a common goal, provided updates to leadership and stakeholders, uncovered gotchas and technical road blocks along the way, became the voice of the team for all things related to billing service",
+    "result": "The billing service was launched to production within the quoted timeframe with minimal bugs and fast follow ups for continued support."
+  },
+  {
+    "id": "orders-microservice-cart",
+    "title": "Build an orders microservice from 0 to 1 at Cart.com",
+    "tags": [
+      "leadership",
+      "collaboration",
+      "ownership",
+      "end to end system development"
+    ],
+    "questionPatterns": [
+      "Tell me about a time you led a project",
+      "Describe a time you coordinated across teams",
+      "Tell me about a feature you owned from concept to production launch",
+      "Tell me about a system you built from 0 to 1",
+      "Tell me about a system or feature you owned end to end",
+      "Tell me about a launch you owned"
+    ],
+    "situation": "Our team needed to get a new microservice built and released into production in a timely manner.",
+    "task": "Work with a Senior developer to design and implement an orders microservice with ambiguous requirements and no technical spec.",
+    "action": "Refined stories, followed up with stakeholders and team members on action items, rallied team members around a common goal, provided updates to leadership and stakeholders, uncovered gotchas and technical road blocks along the way, became the voice of the team for all things related to billing service",
+    "result": "The billing service was launched to production within the quoted timeframe with minimal bugs and fast follow ups for continued support."
   },
   {
     "id": "typescript-migration-monolith",
@@ -30,10 +52,10 @@
       "How have you influenced technical direction?",
       "Tell me about a large refactor or migration"
     ],
-    "situation": "TODO",
-    "task": "TODO",
-    "action": "TODO",
-    "result": "TODO",
+    "situation": "Both front and backend code that supported the Monolith SPA was still in vanilla JavaScript when I was hired",
+    "task": "Modernize and harden the stack by converting both front and backend codebases into TypeScript",
+    "action": "Updated the configuration infrastructure to support TypeScript in the back and frontend repositories, it included re-configuring already existing legacy code and introducing interfaces and types throughout.",
+    "result": "A vast majority of both codebases had typing support, this greatly supported new code and drastically reduced bugs throughout the platform.",
     "lesson": "TODO"
   },
   {
@@ -48,10 +70,10 @@
       "Tell me about a time you mentored someone",
       "How do you help teammates grow?"
     ],
-    "situation": "TODO",
-    "task": "TODO",
-    "action": "TODO",
-    "result": "TODO"
+    "situation": "Monolith - The first dev hire was a Junior, it was his first job in the industry and I helped him learn things like unit testing, proper code reviews, keeping modules concise, TypeScript types, abstracting only where necessary, performance improvements, debugging tools like chrome dev tools and debugger mode in an IDE.  Cart - helped new team members onboard, helped team members with understanding various microservices.",
+    "task": "Help existing Junior team members grow into more advanced programmers.  Help new team members onboard and integrate faster.",
+    "action": "Guiding through code reviews, one on one meetings, work chat app calls, provide spec documents, refine user stories",
+    "result": "Upskilled existing junior engineers and ramped up new team members to be able to start contributing features faster."
   },
   {
     "id": "complex-requirements-rev",
@@ -82,8 +104,8 @@
       "Tell me about a time you disagreed with a coworker",
       "How do you handle conflict on a team?"
     ],
-    "situation": "TODO",
-    "task": "TODO",
+    "situation": "Rev - Needed to build a reusable full screen module that offered a free trial but had time constraints affecting technical decisions.  The spec that was provided suggested taking a screen we already had and porting it to a modal, however, this would cause missing back button functionality and the inability to link to it directly in the future (instead of adding it as a route).",
+    "task": "Implement a full screen module that offers a user a free trial similar to the one that is presented during onboarding.",
     "action": "TODO",
     "result": "TODO",
     "lesson": "TODO"
@@ -103,6 +125,28 @@
     ],
     "situation": "TODO",
     "task": "TODO",
+    "action": "TODO",
+    "result": "TODO",
+    "lesson": "TODO"
+  },
+  {
+    "id": "transcript-translation-rev",
+    "title": "A feature you owned end to end with changing requirements and tight deadlines",
+    "tags": [
+      "end to end",
+      "feature",
+      "ambiguous",
+      "deadline",
+      "requirements",
+      "Ai powered"
+    ],
+    "questionPatterns": [
+      "Tell me about a time you owned a feature end to end",
+      "What's a recent project you're proud of",
+      "What Ai powered projects have you built in a professional setting"
+    ],
+    "situation": "A pod at Rev had overflow so a project they normally would have taken needed to be spec'd out and launched as a Beta feature.  This eventually morphed into needing to be a battle tested production feature for the new 2026 pro plans.",
+    "task": "Create a transcript translation tab that could take mixed languages in the transcript (slang as well, like spanglish) and translate them to english.  Display it on the frontend in the same natural groupings the transcript originally had, side by side with the original.",
     "action": "TODO",
     "result": "TODO",
     "lesson": "TODO"

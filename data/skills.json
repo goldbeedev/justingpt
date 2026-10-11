@@ -15,7 +15,8 @@
         },
         {
           "name": "C#",
-          "level": "proficient"
+          "level": "proficient",
+          "years": 7
         }
       ]
     },
@@ -28,8 +29,24 @@
           "years": 8
         },
         {
-          "name": "Angular",
-          "level": "familiar"
+          "name": "HTML",
+          "level": "expert",
+          "years": 8
+        },
+        {
+          "name": "CSS",
+          "level": "expert",
+          "years": 8
+        },
+        {
+          "name": "MUI",
+          "level": "proficient",
+          "years": 5
+        },
+        {
+          "name": "Tailwind",
+          "level": "proficient",
+          "years": 3
         }
       ]
     },
@@ -38,11 +55,12 @@
       "items": [
         {
           "name": "Node.js",
-          "level": "expert"
+          "level": "expert",
+          "years": 6        
         },
         {
           "name": "GraphQL",
-          "level": "expert",
+          "level": "proficient",
           "years": 5
         },
         {
@@ -52,11 +70,13 @@
         },
         {
           "name": ".NET",
-          "level": "proficient"
+          "level": "proficient",
+          "years": 6
         },
         {
           "name": "Kafka",
-          "level": "familiar"
+          "level": "proficient",
+          "years": 3
         }
       ]
     },
@@ -69,13 +89,19 @@
           "years": 5
         },
         {
+          "name": "MySQL",
+          "level": "proficient",
+          "years": 3
+        },
+        {
           "name": "Prisma",
           "level": "proficient",
           "years": 3
         },
         {
           "name": "Entity Framework",
-          "level": "proficient"
+          "level": "proficient",
+          "years": 4
         }
       ]
     },
@@ -111,7 +137,8 @@
       "items": [
         {
           "name": "Jest",
-          "level": "proficient"
+          "level": "expert",
+          "years": 8
         },
         {
           "name": "Cypress",

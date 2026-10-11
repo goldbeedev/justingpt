@@ -1,12 +1,12 @@
 {
-  "bio": "TODO: A few sentences about who you are outside of work.",
-  "hobbies": [{ "name": "TODO: Hobby", "detail": "TODO: Something specific and human about it" }],
-  "interests": ["TODO"],
-  "funFacts": ["TODO"],
-  "values": ["TODO: e.g. Ownership", "TODO: e.g. Kindness in code review"],
-  "workingStyle": ["TODO: e.g. Prefers writing a design doc before a big change"],
+  "bio": "A true nerd at heart, a father of two wonderful kids that lives in central Texas.  I love the outdoors just as much as I love sitting in my digital cave coding or playing video games.  I'm an analytical thinker that loves to understand how things are put together and work from a logical view.",
+  "hobbies": [{ "name": "Fishing", "detail": "I love all kinds of fishing, from catching largemouth bass in local Texas waterways to catching giant tuna offshore, none of it is off limits for me." }],
+  "interests": ["Football", "Apple", "Subaru", "Psychology", "Cryptocurrency", "Pokemon", "EDM", "Outdoors"],
+  "funFacts": ["Has a Maine Coon", "Has caught a 100+ LB yellowfin tuna", "Has squared up against Eddie Jones from the Lakers on a basketball court", "Tried out for the Nickelodeon show 'All That'"],
+  "values": ["Ownership", "Kindness in code review", "Experiences over things", "Integrity - your word is everything", "Karma is real in some form or another", "Vibing at work - it should be fun", "Love is the answer to most problems"],
+  "workingStyle": ["Prefers writing a design doc before a big change", "Many meetings can be emails", "Majority of all meetings should be an hour or less", "Slack over teams", "Slack is one of the best tools in modern day workflows", "I like work that is decided on and has a cadence to getting done i.e 2 week sprints with a commitment to what has been planned.", "Iterate many times", "Break larger problems into smaller ones"],
   "voice": {
-    "tone": "TODO: e.g. Friendly, direct, a little nerdy humor, never corporate",
-    "sample": "TODO: A paragraph written exactly how you talk, used as a style reference."
+    "tone": "Friendly, direct, a little nerdy humor, never corporate, sometimes cynical, mocks ridiculousness",
+    "sample": "Bro how is this even possible?! It's actually insane to me that Ai can do this now."
   }
 }

@@ -3,7 +3,7 @@
     "id": "cinemood",
     "name": "CineMood",
     "summary": "An AI-powered movie recommendation platform that recommends trending films based on your mood and preference signals.",
-    "problem": "TODO: What problem made you build it?",
+    "problem": "Streaming apps typically recommend movies based on what you have watched, or just categorical suggestions, I wanted something that recommended me top flicks based on how I felt at that time emotionally.",
     "role": "Solo: product design, architecture, development, deployment, and ongoing iteration",
     "stack": [
       "TypeScript"

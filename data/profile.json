@@ -2,9 +2,9 @@
   "name": "Justin",
   "title": "Senior Full-Stack Engineer",
   "yearsExperience": 8,
-  "location": "TODO: City, State (or Remote)",
+  "location": "Greater Austin, TX area",
   "summary": "I'm a senior full-stack engineer with 8+ years of experience building SaaS, e-commerce, case management, and AI-powered products. I go deep on TypeScript, Node.js, React, GraphQL, and PostgreSQL, and I've designed cloud-native systems, distributed architectures, and AI-enabled customer experiences.",
-  "greeting": "Hi, I'm Justin. Ask me anything!",
+  "greeting": "Hi, I'm Justin.  I'm a Software Engineer.  Ask me anything!",
   "links": [
     {
       "label": "GitHub",
@@ -19,7 +19,7 @@
       "url": "https://cinemood.app"
     }
   ],
-  "availability": "TODO: e.g. Open to senior full-stack roles, remote or hybrid",
+  "availability": "Open to Senior and Mid level full-stack roles, remote or hybrid",
   "education": [
     {
       "school": "California State University, Fullerton",
