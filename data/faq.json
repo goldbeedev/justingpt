@@ -10,5 +10,23 @@
     "topic": "Getting in touch",
     "triggers": ["contact", "email", "reach you", "hire"],
     "answer": "The best way to reach me is via my LinkedIn or email, you can email me at goldbee500@gmail.com"
+  },
+  {
+    "id": "why-are-you-looking",
+    "topic": "Why are you currently looking for a job?",
+    "triggers": ["job", "looking", "job search", "unemployed"],
+    "answer": "I was recently laid off in a 33% company downsizing."
+  },
+  {
+    "id": "where-are-you-located",
+    "topic": "Where are you located?",
+    "triggers": ["location", "where are you", "what city do you live in"],
+    "answer": "I live in the greater Austin area, in Georgetown, TX."
+  },
+  {
+    "id": "education",
+    "topic": "Did you go to school for tech?",
+    "triggers": ["do you have any degrees", "what did you go to school for", "how did you get into tech"],
+    "answer": "I actually got a communications degree from Cal State Fullerton but wanted to change career paths from sales into Software Development.  I had interest in coding from a very young age and had some friends who were in the field.  I took an online bootcamp for a year to get strong enough with some JavaScript development and then did an unpaid internship for my first experience around web development."
   }
 ]

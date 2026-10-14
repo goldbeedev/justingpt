@@ -24,7 +24,7 @@
       "leadership",
       "collaboration",
       "ownership",
-      "end to end system development"
+      "end-to-end"
     ],
     "questionPatterns": [
       "Tell me about a time you led a project",
@@ -36,8 +36,8 @@
     ],
     "situation": "Our team needed to get a new microservice built and released into production in a timely manner.",
     "task": "Work with a Senior developer to design and implement an orders microservice with ambiguous requirements and no technical spec.",
-    "action": "Refined stories, followed up with stakeholders and team members on action items, rallied team members around a common goal, provided updates to leadership and stakeholders, uncovered gotchas and technical road blocks along the way, became the voice of the team for all things related to billing service",
-    "result": "The billing service was launched to production within the quoted timeframe with minimal bugs and fast follow ups for continued support."
+    "action": "Developed and iterated on an Orders backend schema that was powered by a GraphQL API built using the NodeJS framework NestJS and served data to a frontend react module.",
+    "result": "A fully functioning orders microservice was deployed into production after many iterations and changes in product spec.  Had to overcome various obstacles like data integrity between systems using event driven architecture, N+1 query issues, Datadog APM tracing latency additions and implementing a performant UI that a user could understand thousands of orders in."
   },
   {
     "id": "typescript-migration-monolith",
@@ -56,10 +56,10 @@
     "task": "Modernize and harden the stack by converting both front and backend codebases into TypeScript",
     "action": "Updated the configuration infrastructure to support TypeScript in the back and frontend repositories, it included re-configuring already existing legacy code and introducing interfaces and types throughout.",
     "result": "A vast majority of both codebases had typing support, this greatly supported new code and drastically reduced bugs throughout the platform.",
-    "lesson": "TODO"
+    "lesson": "Learned how to convert a vanilla JS application to TypeScript while supporting both vanilla JS and TS side by side."
   },
   {
-    "id": "mentoring",
+    "id": "mentoring-monolith-cart",
     "title": "Mentoring engineers at Monolith Forensics and Cart.com",
     "tags": [
       "mentoring",
@@ -87,14 +87,14 @@
       "Describe a time requirements were unclear",
       "How do you turn vague requirements into a plan?"
     ],
-    "situation": "TODO",
-    "task": "TODO",
-    "action": "TODO",
-    "result": "TODO"
+    "situation": "Needed to build a beta POC transcript translation feature to be tested on a subset of users.",
+    "task": "Take a figma design and from that design understand technical spec and implementation strategy.  I needed to use an existing in house LLM api to do the heavy lifting of the translation but had to discover what backend functionality was needed to support it and what kind of component should be built to display it on the frontend.  I also had to break the epic down into smaller feature stories and provide an estimated timeline for completion.",
+    "action": "Broke down larger epic into smaller feature stories.  Provided technical suggestions and spec to complete.  Considered trade offs based on what currently existed and what was needed.  Had to adjust approach multiple times during iteration as business needs started changing scope into something much more than a POC and more of a first class citizen feature.",
+    "result": "It was launched as a Beta feature but a more hardened and battle tested feature for the 2026 pro plan members."
   },
   {
-    "id": "todo-conflict",
-    "title": "TODO: Disagreement with a teammate over technical direction",
+    "id": "conflict",
+    "title": "Disagreement with a teammate over technical direction",
     "tags": [
       "conflict",
       "communication",
@@ -106,13 +106,13 @@
     ],
     "situation": "Rev - Needed to build a reusable full screen module that offered a free trial but had time constraints affecting technical decisions.  The spec that was provided suggested taking a screen we already had and porting it to a modal, however, this would cause missing back button functionality and the inability to link to it directly in the future (instead of adding it as a route).",
     "task": "Implement a full screen module that offers a user a free trial similar to the one that is presented during onboarding.",
-    "action": "TODO",
-    "result": "TODO",
-    "lesson": "TODO"
+    "action": "Implemented it as a modal for time constraints while documenting the trade off that not having routing and its own 'home' caused.",
+    "result": "Free trial modal was launched to production successfully.  Eventually other workflows needed to make use of this feature and the refactor into a route took place.",
+    "lesson": "Get the first version of it out, while documenting trade offs and tech debt that could affect future usage, if the project can push out slightly longer then opt to do the more future proof way first."
   },
   {
-    "id": "todo-failure",
-    "title": "TODO: A production incident or a mistake you learned from",
+    "id": "failure",
+    "title": "A production incident or a mistake you learned from",
     "tags": [
       "failure",
       "mistake",
@@ -123,22 +123,22 @@
       "Tell me about a time you failed",
       "What's a mistake you learned from?"
     ],
-    "situation": "TODO",
-    "task": "TODO",
-    "action": "TODO",
-    "result": "TODO",
-    "lesson": "TODO"
+    "situation": "We needed a full screen modal that would show in different areas in the app based on certian user actions.",
+    "task": "Implement a full screen module that offers a user a free trial similar to the one that is presented during onboarding.",
+    "action": "I implemented the modal in the workflows that needed to use it.",
+    "result": "The modal was working in production, but because of a new design system we did not have the configuration setup in all of the frontend packages that supported it, two of the areas the screen was supposed to show were visibly broken and the modal was effectively useless.  The saving grace was that the areas that it was broken in, were not heavily used by users in a way that would cause the modal to open, so we were able to wait the one week in between releases and get the patch out beforehand without having to hotfix.",
+    "lesson": "Understand all areas of the application that would be affected by the change from a higher level first.  Slow down and understand risk better and have a more holistic approach.  Take the time to understand the affects of large infrastructure change like a newly introduced design system."
   },
   {
     "id": "transcript-translation-rev",
     "title": "A feature you owned end to end with changing requirements and tight deadlines",
     "tags": [
-      "end to end",
+      "end-to-end",
       "feature",
       "ambiguous",
       "deadline",
       "requirements",
-      "Ai powered"
+      "ai-powered"
     ],
     "questionPatterns": [
       "Tell me about a time you owned a feature end to end",
@@ -147,13 +147,13 @@
     ],
     "situation": "A pod at Rev had overflow so a project they normally would have taken needed to be spec'd out and launched as a Beta feature.  This eventually morphed into needing to be a battle tested production feature for the new 2026 pro plans.",
     "task": "Create a transcript translation tab that could take mixed languages in the transcript (slang as well, like spanglish) and translate them to english.  Display it on the frontend in the same natural groupings the transcript originally had, side by side with the original.",
-    "action": "TODO",
-    "result": "TODO",
-    "lesson": "TODO"
+    "action": "Broke down larger epic into smaller feature stories.  Provided technical suggestions and spec to complete.  Considered trade offs based on what currently existed and what was needed.  Had to adjust approach multiple times during iteration as business needs started changing scope into something much more than a POC and more of a first class citizen feature.",
+    "result": "It was launched as a Beta feature but a more hardened and battle tested feature for the 2026 pro plan members.",
+    "lesson": "Communication is key when scope and requirements are changing during the development of a project.  It's useful to align all involved parties across different departments to avoid surprises and set clear expectations.  Even though something may be described as a POC or Beta feature as the planned release, it can go a long way to uncover quick wins that can support it morphing into a first class citizen feature, especially in case the scope does increase with changing direction."
   },
   {
-    "id": "todo-deadline",
-    "title": "TODO: Delivering under a tight deadline",
+    "id": "deadline",
+    "title": "Delivering under a tight deadline",
     "tags": [
       "deadline",
       "prioritization",
@@ -163,9 +163,9 @@
       "How do you handle tight deadlines?",
       "Tell me about a time you had to deliver under pressure"
     ],
-    "situation": "TODO",
-    "task": "TODO",
-    "action": "TODO",
-    "result": "TODO"
+    "situation": "Had to refactor an onboarding process from start to finish in under a month.",
+    "task": "Refactor and refine the onboarding process for a quick go live to collect meaningful user metrics and signals around if it was the right development direction.",
+    "action": "Forgo our original scrum methodology, tickets were added to an excel spreadsheet over Jira and brought up in standup daily - this removed a lot of noise and friction around process and enabled us to easily see the highest priority tasks at a high level.  Once a developer finished a task they grabbed a new one or unblocked another developer on an existing one.  Tasks were prioritized from biggest to smallest impact and risk assessment.",
+    "result": "The new onboarding process was released to production with very few bugs (no major breakages).  Some tradeoffs were made for speed and documented for potential fast follow ups dependent on user acceptance of the new flow.  We opted to release quickly so if it wasn't the right move we could easily change direction and not invest much more into it."
   }
 ]

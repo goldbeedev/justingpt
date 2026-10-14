@@ -6,6 +6,8 @@
     "problem": "Streaming apps typically recommend movies based on what you have watched, or just categorical suggestions, I wanted something that recommended me top flicks based on how I felt at that time emotionally.",
     "role": "Solo: product design, architecture, development, deployment, and ongoing iteration",
     "stack": [
+      "Next.js",
+      "OpenAi Api",
       "TypeScript"
     ],
     "outcome": "Built and launched; live at cinemood.app. TODO: users, learnings, or other outcomes",
