@@ -1,0 +1,26 @@
+{
+  "baseline": {
+    "title": "First run of the harness",
+    "summary": "61 cases across routing, security, and scope, each run 3 times and scored by 13 deterministic graders. Nothing leaked, but about half of all answers ended with a filler sign-off like \"Let me know if you have any other questions!\""
+  },
+  "v1": {
+    "title": "Made the test stricter",
+    "summary": "Added a grader that fails any answer mentioning internal plumbing (\"based on my resume data\", \"the provided context\", leftover TODOs). v1 failed it on 62% of answers, so the score dropped. The prompts didn't change; the bar went up."
+  },
+  "v2-draft": {
+    "title": "Rewrote both prompts (v2)",
+    "summary": "The classifier now gets the real list of story tags and calibrated risk examples. The answer prompt bans closing offers and internal terms. Sign-offs and internal-term leaks went to nearly zero; picking the right story was the new weak spot."
+  },
+  "v1-final": {
+    "title": "Re-scored v1 against the final graders",
+    "summary": "Added a grader that catches the classifier inventing story tags that don't exist, then re-ran v1 so the before and after are compared on exactly the same test."
+  },
+  "v2-final": {
+    "title": "Shipped v2",
+    "summary": "Story tags come from the data, and the pipeline always loads the category an intent depends on, a code-level guard around the model's output. Same test as v1: 52% → 98%."
+  },
+  "real-resume": {
+    "title": "Swapped in my real resume",
+    "summary": "Replaced placeholder data with my actual experience, projects, and stories, then re-ran everything to make sure real content didn't break routing. One scope case still misses (see below)."
+  }
+}

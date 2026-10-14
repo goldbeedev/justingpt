@@ -2,19 +2,28 @@
 
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { describeChatError } from "@/lib/chat/errors";
 import type { ChatUIMessage } from "@/lib/chat/types";
+import type { SuggestionPool } from "@/lib/data/suggestions";
 import { ChatInput } from "./ChatInput";
 import { NewChatIcon } from "./icons";
 import { Message, ThinkingDots } from "./Message";
+import { Suggestions } from "./Suggestions";
 import { Typewriter } from "./Typewriter";
 import { useStoredToggle } from "./useStoredToggle";
 
 const DETAILS_KEY = "justingpt:under-the-hood";
 const STICK_TO_BOTTOM_PX = 80;
 
-export function Chat({ name, greeting }: { name: string; greeting: string }) {
+interface ChatProps {
+  name: string;
+  greeting: string;
+  suggestions: SuggestionPool;
+}
+
+export function Chat({ name, greeting, suggestions }: ChatProps) {
   const { messages, sendMessage, status, stop, error, regenerate, setMessages, clearError } =
     useChat<ChatUIMessage>({
       // A fixed id keeps the page prerenderable: otherwise useChat generates one with
@@ -38,13 +47,16 @@ export function Chat({ name, greeting }: { name: string; greeting: string }) {
     if (el && stickToBottom.current) el.scrollTop = el.scrollHeight;
   }, [messages, status]);
 
-  const submit = () => {
-    const text = input.trim();
-    if (!text) return;
+  const send = (text: string) => {
     clearError();
     stickToBottom.current = true;
     sendMessage({ text });
     setInput("");
+  };
+
+  const submit = () => {
+    const text = input.trim();
+    if (text) send(text);
   };
 
   const newChat = () => {
@@ -58,7 +70,10 @@ export function Chat({ name, greeting }: { name: string; greeting: string }) {
     <>
       <ChatInput value={input} onChange={setInput} onSubmit={submit} onStop={stop} busy={busy} />
       <p className="mt-2 text-center text-xs text-muted">
-        An AI version of {name}. Answers come from my real resume, but it can make mistakes.
+        An AI version of {name}. Answers come from my real resume, but it can make mistakes.{" "}
+        <Link href="/evals" className="underline underline-offset-2 hover:text-foreground">
+          See how it&apos;s tested
+        </Link>
       </p>
     </>
   );
@@ -95,7 +110,10 @@ export function Chat({ name, greeting }: { name: string; greeting: string }) {
       {empty ? (
         <main className="flex flex-1 flex-col items-center justify-center px-4 pb-[12vh]">
           <Typewriter text={greeting} />
-          <div className="mt-8 w-full max-w-3xl">{composer}</div>
+          <div className="mt-8 w-full max-w-3xl">
+            {composer}
+            <Suggestions pool={suggestions} onPick={send} />
+          </div>
         </main>
       ) : (
         <>

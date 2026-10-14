@@ -1,29 +1,16 @@
-/** pnpm eval:report: renders evals/REPORT.md from every saved run, newest first. */
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+/** pnpm eval:report: renders evals/REPORT.md and evals/history.json from every saved run. */
+import { writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { fileURLToPath } from "node:url";
-import type { Summary } from "./summary";
+import { loadDatasets } from "./datasets";
+import { buildHistory, EVALS_DIR, HISTORY_FILE, readNotes, readSavedRuns, serializeHistory } from "./history";
 
-const DIR = fileURLToPath(new URL("./", import.meta.url));
-const RESULTS_DIR = join(DIR, "results");
-
-interface SavedRun {
-  startedAt: string;
-  label: string | null;
-  git: { commit: string; dirty: boolean };
-  models: { classifier?: string; answer?: string };
-  promptVersions: { classifier: string; answer: string };
-  filters: { suite: string[] | null; case: string[] | null; repeat: number };
-  summary: Summary;
-}
+const DIR = EVALS_DIR;
 
 const pct = (rate?: { passRate: number; passed: number; total: number }) =>
   rate ? `${Math.round(rate.passRate * 100)}% (${rate.passed}/${rate.total})` : "–";
 
-const runs: SavedRun[] = readdirSync(RESULTS_DIR)
-  .filter((f) => f.endsWith(".json"))
-  .map((f) => JSON.parse(readFileSync(join(RESULTS_DIR, f), "utf8")))
-  .sort((a, b) => b.startedAt.localeCompare(a.startedAt));
+const saved = readSavedRuns();
+const runs = [...saved].sort((a, b) => b.startedAt.localeCompare(a.startedAt));
 
 const rows = runs.map((run) => {
   const { summary: s } = run;
@@ -65,3 +52,7 @@ ${failures}
 `,
 );
 console.log(`Wrote evals/REPORT.md (${runs.length} runs)`);
+
+const history = buildHistory(saved, loadDatasets(), readNotes());
+writeFileSync(HISTORY_FILE, serializeHistory(history));
+console.log(`Wrote evals/history.json (${history.runs.length} full runs)`);
